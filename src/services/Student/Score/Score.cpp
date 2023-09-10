@@ -4,7 +4,7 @@
 namespace services {
     std::map<SubjectsEnum, float> services::Score::CalculateAvgScore(student::Scores scores) {
         std::map<SubjectsEnum, float> avgScores;
-        std::map<SubjectsEnum, std::vector<uint8_t>> subjects;
+        std::map<SubjectsEnum, std::vector<uint32_t>> subjects;
 
         for (auto& score : scores.GetScores()) {
             for (auto& [subject, value] : score) {

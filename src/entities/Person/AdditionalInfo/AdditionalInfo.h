@@ -8,14 +8,14 @@ namespace person {
     struct AdditionalInfo {
     private:
         std::string idNumber, taxNumber, phoneNumber, email;
-        uint8_t age;
+        uint32_t age;
     public:
-        explicit AdditionalInfo(std::string idNumber, std::string taxNumber, std::string phoneNumber, std::string email, uint8_t age);
+        explicit AdditionalInfo(std::string idNumber, std::string taxNumber, std::string phoneNumber, std::string email, uint32_t age);
         std::string GetIdNumber();
         std::string GetTaxNumber();
         std::string GetPhoneNumber();
         std::string GetEmail();
-        uint8_t GetAge();
+        uint32_t GetAge();
     };
 }
 

@@ -32,27 +32,24 @@ namespace services {
         static std::vector<std::string> STREETS;
 
 
-        std::string GenerateName();
-        std::string GenerateSurname();
-        std::string GeneratePatronomic();
+        static std::string GenerateName();
+        static std::string GenerateSurname();
+        static std::string generatePatronomic();
 
-        std::string GeneratePassportID();
-        std::string GenerateTaxID();
-        std::string GeneratePhoneNumber();
-        std::string GenerateEmail();
-        uint8_t GenerateAge();
+        static std::string GeneratePassportID();
+        static std::string GenerateTaxID();
+        static std::string GeneratePhoneNumber();
+        static std::string GenerateEmail();
+        static uint32_t GenerateAge();
 
-        entities::Address GenerateAddress();
-        student::Scores GenerateScores(uint8_t course);
+        static entities::Address GenerateAddress();
+        static student::Scores GenerateScores(uint32_t course);
 
-        std::string GenerateGroup();
-        uint8_t GenerateCourse();
-
-        template<typename CastType>
-        CastType GenerateNumberInRange(int min, int max);
+        static std::string GenerateGroup();
+        static uint32_t GenerateCourse();
 
     public:
-        entities::Student GenerateStudent();
+        static entities::Student GenerateStudent();
     };
 }
 

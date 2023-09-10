@@ -12,18 +12,18 @@ namespace entities {
         student::Scores scores;
 
         std::string group;
-        uint8_t course;
+        uint32_t course;
     public:
         Student(
             entities::Person  person,
             student::Scores  scores,
             std::string group,
-            uint8_t course
+            uint32_t course
         );
         [[nodiscard]] Person GetPerson() const;
         [[nodiscard]] student::Scores GetScores() const;
         [[nodiscard]] std::string GetGroup() const;
-        [[nodiscard]] uint8_t GetCourse() const;
+        [[nodiscard]] uint32_t GetCourse() const;
     };
 }
 

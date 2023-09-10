@@ -9,16 +9,13 @@ int readIntFromConsole(const std::string& message) {
 }
 
 int main() {
-    services::FakeData fakeData;
-    services::Student student(fakeData);
-
     int count = readIntFromConsole("Enter count of students: ");
     if (count == 0) {
         std::cout << "Count of students must be greater than 0" << std::endl;
         return 0;
     }
 
-    student.PrintStudents(count);
+    services::Student::PrintStudents(count);
 
     return 0;
 }

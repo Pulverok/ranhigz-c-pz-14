@@ -1,6 +1,10 @@
 #include "FakeData.h"
 #include <random>
 
+#include "../../helpers/helper.h"
+
+using namespace helpers;
+
 namespace services {
     std::vector<std::string> FakeData::NAMES = {"Sofia", "Maria", "Anna", "Daria", "Arina", "Polina"};
     std::vector<std::string> FakeData::SURNAMES = {"Lenchenko", "Ivanova", "Petrova", "Sergeeva", "Vladimirova", "Dmitrieva"};
@@ -12,72 +16,65 @@ namespace services {
     std::vector<std::string> FakeData::CITIES = {"Moscow", "Saint-Petersburg", "Kazan", "Novosibirsk", "Yekaterinburg", "Nizhny Novgorod"};
     std::vector<std::string> FakeData::STREETS = {"Lenina", "Kirova", "Gagarina", "Krasina", "Krasnaya", "Sovetskaya"};
 
-    template <typename CastType = int>
-    CastType FakeData::GenerateNumberInRange(int min, int max) {
-        std::random_device rd;
-        std::mt19937 mt(rd());
-        std::uniform_int_distribution<int> dist(min, max);
-
-        return static_cast<CastType>(dist(mt));
-    }
-
     int GetVectorSize(const std::vector<std::string>& vector) {
         return static_cast<int>(vector.size());
     }
 
     std::string FakeData::GenerateName() {
-        auto index = FakeData::GenerateNumberInRange<uint32_t>(0, GetVectorSize(FakeData::NAMES) - 1);
+        auto index = GenerateNumberInRange(0, GetVectorSize(FakeData::NAMES) - 1);
         return FakeData::NAMES[index];
     }
 
     std::string FakeData::GenerateSurname() {
-        auto index = FakeData::GenerateNumberInRange<uint32_t>(0, GetVectorSize(FakeData::SURNAMES) - 1);
+        auto index = GenerateNumberInRange(0, GetVectorSize(FakeData::SURNAMES) - 1);
         return FakeData::SURNAMES[index];
     }
 
-    std::string FakeData::GeneratePatronomic() {
-        auto index = FakeData::GenerateNumberInRange<uint32_t>(0, GetVectorSize(FakeData::PATRONOMICS) - 1);
+    std::string FakeData::generatePatronomic() {
+        auto index = GenerateNumberInRange(0, GetVectorSize(FakeData::PATRONOMICS) - 1);
         return FakeData::PATRONOMICS[index];
     }
 
     std::string FakeData::GeneratePassportID() {
-        return std::to_string(FakeData::GenerateNumberInRange(1000000000, 1410065407));
+        int val = static_cast<int>(GenerateNumberInRange(1000000000, 1410065407));
+        return std::to_string(val);
     }
 
     std::string FakeData::GenerateTaxID() {
-        return std::to_string(FakeData::GenerateNumberInRange(1000000000, 1410065407));
+        int val = static_cast<int>(GenerateNumberInRange(1000000000, 1410065407));
+        return std::to_string(val);
     }
 
     std::string FakeData::GeneratePhoneNumber() {
-        auto index = FakeData::GenerateNumberInRange<uint32_t>(0, GetVectorSize(FakeData::PHONE_NUMBERS) - 1);
+        auto index = GenerateNumberInRange(0, GetVectorSize(FakeData::PHONE_NUMBERS) - 1);
         return FakeData::PHONE_NUMBERS[index];
     }
 
     std::string FakeData::GenerateEmail() {
-        auto index = FakeData::GenerateNumberInRange<uint32_t>(0, GetVectorSize(FakeData::EMAILS) - 1);
+        auto index = GenerateNumberInRange(0, GetVectorSize(FakeData::EMAILS) - 1);
         return FakeData::EMAILS[index];
     }
 
-    uint8_t FakeData::GenerateAge() {
-        return GenerateNumberInRange<uint8_t>(FakeData::MIN_AGE, FakeData::MAX_AGE);
+    uint32_t FakeData::GenerateAge() {
+        return GenerateNumberInRange(FakeData::MIN_AGE, FakeData::MAX_AGE);
     }
 
     entities::Address FakeData::GenerateAddress() {
-        auto cityIndex = FakeData::GenerateNumberInRange<uint32_t>(0, GetVectorSize(FakeData::CITIES) - 1);
-        auto streetIndex = FakeData::GenerateNumberInRange<uint32_t>(0, GetVectorSize(FakeData::STREETS) - 1);
+        auto cityIndex = GenerateNumberInRange(0, GetVectorSize(FakeData::CITIES) - 1);
+        auto streetIndex = GenerateNumberInRange(0, GetVectorSize(FakeData::STREETS) - 1);
 
         std::string cityName = FakeData::CITIES[cityIndex];
         std::string streetName = FakeData::STREETS[streetIndex];
-        std::string houseNumber = std::to_string(FakeData::GenerateNumberInRange(1, 100));
-        std::string aptNumber = std::to_string(FakeData::GenerateNumberInRange(1, 100));
+        std::string houseNumber = std::to_string(GenerateNumberInRange(1, 100));
+        std::string aptNumber = std::to_string(GenerateNumberInRange(1, 100));
 
         return entities::Address(cityName, streetName, houseNumber, aptNumber);
     }
 
-    student::Scores FakeData::GenerateScores(uint8_t course) {
-        std::vector<std::map<SubjectsEnum, uint8_t>> scores;
+    student::Scores FakeData::GenerateScores(uint32_t course) {
+        std::vector<std::map<SubjectsEnum, uint32_t>> scores;
 
-        for (int i = 0; i < course; i++) {
+        for (uint32_t i = 0; i < course; i++) {
             scores.push_back({
                 {SubjectsEnum::MATH, GenerateNumberInRange(FakeData::MIN_SCORE, FakeData::MAX_SCORE)},
                 {SubjectsEnum::PHYSICS, GenerateNumberInRange(FakeData::MIN_SCORE, FakeData::MAX_SCORE)},
@@ -92,22 +89,22 @@ namespace services {
     }
 
     std::string FakeData::GenerateGroup() {
-        auto index = FakeData::GenerateNumberInRange<uint32_t>(0, GetVectorSize(FakeData::GROUPS) - 1);
+        auto index = GenerateNumberInRange(0, GetVectorSize(FakeData::GROUPS) - 1);
         return FakeData::GROUPS[index];
     }
 
-    uint8_t FakeData::GenerateCourse() {
-        return GenerateNumberInRange<uint8_t>(FakeData::MIN_COURSE, FakeData::MAX_COURSE);
+    uint32_t FakeData::GenerateCourse() {
+        return GenerateNumberInRange(FakeData::MIN_COURSE, FakeData::MAX_COURSE);
     }
 
     entities::Student FakeData::GenerateStudent() {
-        uint8_t course = FakeData::GenerateCourse();
+        auto course = FakeData::GenerateCourse();
         return {
             entities::Person(
                 person::Fio(
                     FakeData::GenerateName(),
                     FakeData::GenerateSurname(),
-                    FakeData::GeneratePatronomic()
+                    FakeData::generatePatronomic()
                 ),
                 person::AdditionalInfo(
                     FakeData::GeneratePassportID(),

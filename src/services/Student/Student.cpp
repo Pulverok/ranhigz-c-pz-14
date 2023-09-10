@@ -4,7 +4,7 @@
 namespace services {
     void services::Student::PrintStudents(int count) {
         for (int i = 0; i < count; i++) {
-            entities::Student student = this->fakeData.GenerateStudent();
+            entities::Student student = services::FakeData::GenerateStudent();
 
             std::cout << "Name: " << student.GetPerson().GetFio().GetFullName() << std::endl;
             std::cout << "Age: " << static_cast<unsigned>(student.GetPerson().GetAdditionalInfo().GetAge()) << std::endl;
@@ -26,6 +26,4 @@ namespace services {
             std::cout << std::endl;
         }
     }
-
-    Student::Student(FakeData &fakeData) : fakeData(fakeData) {}
 }

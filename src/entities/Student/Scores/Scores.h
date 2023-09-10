@@ -11,10 +11,10 @@
 namespace student {
     struct Scores {
     private:
-        std::vector<std::map<SubjectsEnum, uint8_t>> scores;
+        std::vector<std::map<SubjectsEnum, uint32_t>> scores;
     public:
-        explicit Scores(std::vector<std::map<SubjectsEnum, uint8_t>> scores);
-        std::vector<std::map<SubjectsEnum, uint8_t>> GetScores();
+        explicit Scores(std::vector<std::map<SubjectsEnum, uint32_t>> scores);
+        std::vector<std::map<SubjectsEnum, uint32_t>> GetScores();
     };
 }
 

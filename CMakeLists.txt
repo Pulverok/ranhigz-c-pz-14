@@ -7,34 +7,38 @@ if(NOT CMAKE_CXX_EXTENSIONS)
     set(CMAKE_CXX_EXTENSIONS OFF)
 endif()
 
-add_compile_options(
-    -Werror
+if (CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
+    add_compile_options(
+            /W4
+            /WX
+    )
+endif()
 
-    -Wall
-    -Wextra
-    -Wpedantic
+if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+    add_compile_options(
+            -Werror
 
-    -Wcast-align
-    -Wcast-qual
-    -Wconversion
-    -Wctor-dtor-privacy
-    -Wenum-compare
-    -Wfloat-equal
-    -Wnon-virtual-dtor
-    -Wold-style-cast
-    -Woverloaded-virtual
-    -Wredundant-decls
-    -Wsign-conversion
-    -Wsign-promo
-)
+            -Wall
+            -Wextra
+            -Wpedantic
 
-add_executable(Laboratory_Work_14 main.cpp
-        src/entities/Person/Person.h
-        src/entities/Person/Fio/Fio.h
-        src/entities/Person/AdditionalInfo/AdditionalInfo.h
-        src/entities/Address/Address.h
-        src/entities/Student/Scores/Scores.h
-        src/entities/Student/Student.h
+            -Wcast-align
+            -Wcast-qual
+            -Wconversion
+            -Wctor-dtor-privacy
+            -Wenum-compare
+            -Wfloat-equal
+            -Wnon-virtual-dtor
+            -Wold-style-cast
+            -Woverloaded-virtual
+            -Wredundant-decls
+            -Wsign-conversion
+            -Wsign-promo
+    )
+endif()
+
+set(SOURCES
+        main.cpp
 
         src/entities/Person/Person.cpp
         src/entities/Person/Fio/Fio.cpp
@@ -42,12 +46,14 @@ add_executable(Laboratory_Work_14 main.cpp
         src/entities/Address/Address.cpp
         src/entities/Student/Scores/Scores.cpp
         src/entities/Student/Student.cpp
-        src/enum/Subjects.h
+
+        src/helpers/helper.cpp
+
         src/enum/Subjects.cpp
+
         src/services/FakeData/FakeData.cpp
-        src/services/FakeData/FakeData.h
         src/services/Student/Student.cpp
-        src/services/Student/Student.h
-        src/services/Student/Score/Score.h
         src/services/Student/Score/Score.cpp
 )
+
+add_executable(Laboratory_Work_14 ${SOURCES})

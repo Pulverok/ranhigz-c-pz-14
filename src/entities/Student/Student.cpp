@@ -8,7 +8,7 @@ Student::Student(
     Person  person,
     student::Scores  scores,
     std::string group,
-    uint8_t course
+    uint32_t course
 ) : person(std::move(person)), scores(std::move(scores)) {
     this->group = std::move(group);
     this->course = course;
@@ -26,6 +26,6 @@ std::string Student::GetGroup() const {
     return this->group;
 }
 
-uint8_t Student::GetCourse() const {
+uint32_t Student::GetCourse() const {
     return this->course;
 }

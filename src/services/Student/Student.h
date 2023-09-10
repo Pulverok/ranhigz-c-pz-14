@@ -10,11 +10,8 @@
 
 namespace services {
     class Student {
-    private:
-        FakeData &fakeData;
     public:
-        explicit Student(FakeData &fakeData);
-        void PrintStudents(int count);
+        static void PrintStudents(int count);
     };
 }
 
