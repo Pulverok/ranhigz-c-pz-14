@@ -10,7 +10,7 @@ int readIntFromConsole(const std::string& message) {
 
 int main() {
     int count = readIntFromConsole("Enter count of students: ");
-    if (count == 0) {
+    if (count <= 0) {
         std::cout << "Count of students must be greater than 0" << std::endl;
         return 0;
     }
